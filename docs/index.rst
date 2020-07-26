@@ -1,10 +1,10 @@
-.. Fishdots2 documentation master file, created by
-   sphinx-quickstart on Sun Jul 26 03:01:17 2020.
+.. fish_projects documentation master file, created by
+   sphinx-quickstart on Sun Jul 26 03:06:00 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Fishdots2's documentation!
-=====================================
+Welcome to fish_projects's documentation!
+=========================================
 
 .. toctree::
    :maxdepth: 2

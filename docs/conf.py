@@ -17,12 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Fishdots2'
+project = 'fish_projects'
 copyright = '2020, Andrew Matthews'
 author = 'Andrew Matthews'
 
 # The full version, including alpha/beta/rc tags
-release = '1.2.3'
+release = '1.0.0'
 
 
 # -- General configuration ---------------------------------------------------
