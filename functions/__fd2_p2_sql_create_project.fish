@@ -5,6 +5,8 @@ function __fd2_p2_sql_create_project -d "create a new project entry in the datab
     set -l dbpath ''
     set -l shortname ''
 
+    debug "__fd2_p2_sql_create_project args: $argv"
+
     getopts $argv | while read -l key value
         switch $key
             case t title
