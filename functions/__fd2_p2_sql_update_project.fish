@@ -1,29 +1,61 @@
 function __fd2_p2_sql_update_project -d "update a project entry in the database, identified by project shortname which may not be changed"
-    set -l id -1
-    set -l title 'not set'
-    set -l desc 'not set'
-    set -l dbpath 'not set'
-    set -l shortname ''
-    set -l active -1
-    set -l current -1
 
-    getopts $argv | while read -l key value
-        switch $key
-            case t title
-                set title $value
-            case i id
-                set id $value
-            case d desc
-                set desc $value
-            case s shortname
-                set shortname $value
-            case p path
-                set dbpath $value
-            case a active
-                set active $value
-            case c current
-                set current $value
-        end
+    argparse 'i/=+' 't/=+' 'd/=+' 'p/=+' 's/=+' 'a/=+' 'c/=+' -- $argv
+
+    set -l id 0
+    if test -z $_flag_i
+        error "__fd2_p2_sql_update_project: id must be set (use the -i option)" >&2
+        return 1
+    else
+        set id $_flag_i
+    end
+
+    set -l title ''
+    if test -z $_flag_t
+        error "__fd2_p2_sql_update_project: title must be set (use the -t option)" >&2
+        return 1
+    else
+        set title $_flag_t
+    end
+
+    set -l desc ''
+    if test -z $_flag_s
+        error "__fd2_p2_sql_update_project: desc must be set (use the -d option)" >&2
+        return 1
+    else
+        set desc $_flag_s
+    end
+
+    set -l dbpath ''
+    if test -z $_flag_p
+        error "__fd2_p2_sql_update_project: dbpath must be set (use the -p option)" >&2
+        return 1
+    else
+        set dbpath $_flag_p
+    end
+
+    set -l shortname ''
+    if test -z $_flag_s
+        error "__fd2_p2_sql_update_project: shortname must be set (use the -s option)" >&2
+        return 1
+    else
+        set shortname $_flag_s
+    end
+
+    set -l active ''
+    if test -z $_flag_a
+        error "__fd2_p2_sql_update_project: active must be set (use the -a option)" >&2
+        return 1
+    else
+        set active $_flag_a
+    end
+
+    set -l current ''
+    if test -z $_flag_c
+        error "__fd2_p2_sql_update_project: current must be set (use the -c option)" >&2
+        return 1
+    else
+        set current $_flag_c
     end
 
     if test -z $shortname
@@ -60,4 +92,3 @@ function __fd2_p2_sql_update_project -d "update a project entry in the database,
   echo Statement: $upd_stmt
   sqlite3 (__fd2_p2_sql_db_path) "$upd_stmt;"
 end
-# https://github.com/jorgebucaran/fish-getopts

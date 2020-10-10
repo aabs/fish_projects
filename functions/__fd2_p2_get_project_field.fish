@@ -2,23 +2,22 @@ function __fd2_p2_get_project_field  -d ""
     set -l pipe_delimited_result ''
     set -l fieldname ''
 
-    getopts $argv | while read -l key value
-        switch $key
-            case f fieldname
-                set fieldname $value
-            case r result_string
-                set pipe_delimited_result $value
-        end
+    argparse 'f/=+' 'r/=+' -- $argv
+
+    if test -z $_flag_f
+        error "__fd2_p2_get_project_field: fieldname must be set (use the -s option)" >&2
+        return 1
+    else
+        set fieldname $_flag_f
     end
 
-    if test -z $fieldname
-      error "field name must be set (use the -f option)" >&2
-      return 1
+    if test -z $_flag_r
+        error "__fd2_p2_get_project_field: pipe_delimited_result must be set (use the -s option)" >&2
+        return 1
+    else
+        set pipe_delimited_result $_flag_r
     end
-    if test -z $pipe_delimited_result
-      error "result_string must be set (use the -r option)" >&2
-      return 1
-    end
+
     set fields (string split '|' $pipe_delimited_result)
     switch $fieldname
         

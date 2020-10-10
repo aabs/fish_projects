@@ -4,17 +4,14 @@ function __fd2_p2_note -d "create a project note if note plugin is available"
     end
     set -l title ''
 
-    getopts $argv | while read -l key value
-        switch $key
-            case s title
-                set title $value
-        end
+    argparse 't/=+' -- $argv
+
+    if test -z $_flag_t
+        error "__fd2_p2_cd: title must be set (use the -s option)" >&2
+        return 1
+    else
+        set title $_flag_t
     end
 
-    if test -z $title
-      echo "title must be set (use the -t option)" >&2
-      return 1
-    end
-
-    n2 pcreate "$__fd2_p2_current_sn $argv"
+    n2 pcreate -t "$__fd2_p2_current_sn $argv"
 end

@@ -1,13 +1,14 @@
 function __fd2_p2_sql_delete_project -d "delete a project entry in the database"
-    set -l shortname ''
+    argparse 's/=+' -- $argv
 
-    getopts $argv | while read -l key value
-        switch $key
-            case s shortname
-                set shortname $value
-        end
+    set -l shortname 0
+    if test -z $_flag_s
+        error "__fd2_p2_sql_create_project: shortname must be set (use the -s option)" >&2
+        return 1
+    else
+        set shortname $_flag_s
     end
 
-  sqlite3 (__fd2_p2_sql_db_path) "delete from project where shortname = '$shortname';"
+
+    sqlite3 (__fd2_p2_sql_db_path) "delete from project where shortname = '$shortname';"
 end
-# https://github.com/jorgebucaran/fish-getopts
