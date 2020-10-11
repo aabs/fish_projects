@@ -14,9 +14,9 @@ function __fd2_p2_switch_tmux_sessions
 
     if functions -q tm
         if contains $shortname (tm ls)
-            tm goto $shortname
+            tm goto -n $shortname
         else
-            tm new $shortname
+            tm new -n $shortname
         end
     end
 end
