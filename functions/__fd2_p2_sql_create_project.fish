@@ -1,6 +1,6 @@
 function __fd2_p2_sql_create_project -d "create a new project entry in the database"
 
-    set -l options (fish_opt -s h -l help -o)
+    set -l options (fish_opt -s h -l help)
     set -l options $options (fish_opt -s i -l id -r)
     set -l options $options (fish_opt -s t -l title -r)
     set -l options $options (fish_opt -s d -l desc -r)
