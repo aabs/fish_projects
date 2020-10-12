@@ -1,6 +1,34 @@
 function __fd2_p2_sql_update_project -d "update a project entry in the database, identified by project shortname which may not be changed"
 
-    argparse 'i/=+' 't/=+' 'd/=+' 'p/=+' 's/=+' 'a/=+' 'c/=+' -- $argv
+    set -l options (fish_opt -s h -l help)
+    set -l options $options (fish_opt -s i -l id -r)
+    set -l options $options (fish_opt -s t -l title -r)
+    set -l options $options (fish_opt -s d -l desc -r)
+    set -l options $options (fish_opt -s p -l dbpath -r)
+    set -l options $options (fish_opt -s s -l shortname -r)
+    set -l options $options (fish_opt -s a -l active -r)
+    set -l options $options (fish_opt -s c -l current -r)
+
+    argparse -n "p2 update" -N 1 $options -- $argv
+    or return
+
+    if set -q _flag_help
+        echo "usage: p2 update [<options>]"
+        echo
+
+        echo "  -h, --help                   display this"
+        echo "  -a (0|1), --active=(0|1)     is project being worked on?"
+        echo "  -c (0|1), --current=(0|1)    is project actively in use, right now?"
+        echo "  -i <id>, --id=<id>           numeric code for project"
+        echo "  -t <title>, --title=<title>  brief summary of project"
+        echo "  -d <desc>, --desc=<desc>     description of the project"
+        echo "  -p <path>, --dbpath=<path>   path to the project folder"
+        echo "  -s <short name>, --shortname=<short name>"
+        echo "                               short name for the project (commonly used)"
+        echo
+
+        return 0
+    end
 
     set -l id 0
     if test -z $_flag_i
