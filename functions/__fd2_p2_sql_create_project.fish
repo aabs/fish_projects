@@ -7,10 +7,20 @@ function __fd2_p2_sql_create_project -d "create a new project entry in the datab
     set -l options $options (fish_opt -s p -l dbpath -r)
     set -l options $options (fish_opt -s s -l shortname -r)
 
-    argparse -n "p2 add" -N 1 $options -- $argv
+    argparse -n "p2 add" -n 1 $options -- $argv
+    or return
 
-    if $_flag_help
-        echo "__fd2_p2_sql_create_project help text"
+    if set -q _flag_help
+        echo "p2 add help text:"
+
+        echo "  -h, --help                   display this"
+        echo "  -i <id>, --id=<id>           numeric code for project"
+        echo "  -t <title>, --title=<title>  brief summary of project"
+        echo "  -d <desc>, --desc=<desc>     description of the project"
+        echo "  -p <path>, --dbpath=<path>   path to the project folder"
+        echo "  -s <short name>, --shortname=<short name>"
+        echo "                               short name for the project (commonly used)"
+
         return 0
     end
 
