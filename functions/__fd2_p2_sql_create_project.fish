@@ -11,7 +11,8 @@ function __fd2_p2_sql_create_project -d "create a new project entry in the datab
     or return
 
     if set -q _flag_help
-        echo "p2 add help text:"
+        echo "usage: p2 add [<options>]"
+        echo
 
         echo "  -h, --help                   display this"
         echo "  -i <id>, --id=<id>           numeric code for project"
@@ -20,6 +21,7 @@ function __fd2_p2_sql_create_project -d "create a new project entry in the datab
         echo "  -p <path>, --dbpath=<path>   path to the project folder"
         echo "  -s <short name>, --shortname=<short name>"
         echo "                               short name for the project (commonly used)"
+        echo
 
         return 0
     end
