@@ -1,6 +1,13 @@
 function __fd2_p2_sql_create_project -d "create a new project entry in the database"
 
-    argparse 'h/help' 'i/=+' 't/=+' 'd/=+' 'p/=+' 's/=+' -- $argv
+    set -l options (fish_opt -s h -l help -o)
+    set -l options $options (fish_opt -s i -l id -r)
+    set -l options $options (fish_opt -s t -l title -r)
+    set -l options $options (fish_opt -s d -l desc -r)
+    set -l options $options (fish_opt -s p -l dbpath -r)
+    set -l options $options (fish_opt -s s -l shortname -r)
+
+    argparse $options -- $argv
 
     if test $_flag_h -gt 0
         echo "__fd2_p2_sql_create_project help text"
