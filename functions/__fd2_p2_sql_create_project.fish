@@ -9,6 +9,7 @@ function __fd2_p2_sql_create_project -d "create a new project entry in the datab
 
     argparse $options -- $argv
 
+echo _flag_h $_flag_h
     if test $_flag_h -gt 0
         echo "__fd2_p2_sql_create_project help text"
         return 0
