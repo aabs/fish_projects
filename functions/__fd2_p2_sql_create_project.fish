@@ -1,6 +1,6 @@
 function __fd2_p2_sql_create_project -d "create a new project entry in the database"
 
-    argparse 'i/=+' 't/=+' 'd/=+' 'p/=+' 's/=+' 'h/help' -- $argv
+    argparse 'h/help' 'i/=+' 't/=+' 'd/=+' 'p/=+' 's/=+' -- $argv
 
     if test $_flag_h -gt 0
         echo "__fd2_p2_sql_create_project help text"
