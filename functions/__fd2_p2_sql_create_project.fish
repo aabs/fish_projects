@@ -4,6 +4,7 @@ function __fd2_p2_sql_create_project -d "create a new project entry in the datab
 
     if test $_flag_h -gt 0
         echo "__fd2_p2_sql_create_project help text"
+        return 0
     end
 
     set -l id 0
